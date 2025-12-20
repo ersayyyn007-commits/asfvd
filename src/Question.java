@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Question {
     private int questionId;
     private String questionText;
@@ -13,29 +15,25 @@ public class Question {
         return questionId;
     }
 
-    public void setQuestionId(int questionId) {
-        this.questionId = questionId;
-    }
-
     public String getQuestionText() {
         return questionText;
-    }
-
-    public void setQuestionText(String questionText) {
-        this.questionText = questionText;
-    }
-
-    public String getCorrectAnswer() {
-        return correctAnswer;
-    }
-
-    public void setCorrectAnswer(String correctAnswer) {
-        this.correctAnswer = correctAnswer;
     }
 
     @Override
     public String toString() {
         return "Question{id=" + questionId + ", text='" + questionText + "'}";
     }
-}
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Question)) return false;
+        Question question = (Question) o;
+        return questionId == question.questionId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(questionId);
+    }
+}
